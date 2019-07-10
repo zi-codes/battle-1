@@ -1,17 +1,8 @@
-<% if @player1_name == "" && @player2_name == "" %>
 
-  <p>You didn't enter the names properly! Try again</p>
-
-
-<% else %>
 
   <p>Player 1 is called <%= @player1_name %> </p>
   <p>Player 2 is called <%= @player2_name %> </p>
   <p>Player 1 hit points: <%= @player1_hit_points %> HP </p>
   <p>Player 2 hit points: <%= @player2_hit_points %> HP </p>
 
-  <form action="/attack_p2">
-    <input type="submit" value="Attack P2">
-  </form>
-
-<% end %>
+  <h1>Wham! <%= @player1_name %> attacked <%= @player2_name %></h1>

@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require_relative 'lib/player'
 # require 'shotgun'
 
 class Battle < Sinatra::Base
@@ -9,18 +10,27 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    session[:player1_name] = params[:player1_name]
-    session[:player2_name] = params[:player2_name]
+    $player_1 = Player.new(params[:player1_name])
+    $player_2 = Player.new(params[:player2_name])
     redirect '/play'
   end
 
   get '/play' do
-    @player1_name = session[:player1_name]
-    @player2_name = session[:player2_name]
-    @player1_hit_points = 60
-    @player2_hit_points = 60
+    @player1_name = $player_1.name
+    @player2_name = $player_2.name
+    @player1_hit_points = $player_1.hp
+    @player2_hit_points = $player_2.hp
 
     erb(:play)
+  end
+
+  get '/attack_p2' do
+    @player1_name = $player_1.name
+    @player2_name = $player_2.name
+    $player_1.attack($player_2)
+    @player1_hit_points = $player_1.hp
+    @player2_hit_points = $player_2.hp
+    erb(:wham_p2)
   end
 
   run! if app_file == $0
