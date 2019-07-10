@@ -19,7 +19,7 @@ class Battle < Sinatra::Base
 
   get '/play' do
     @game = $game
-    erb(:play)
+    @game.finished? ? erb(:results) : erb(:play)
   end
 
   get '/attack' do

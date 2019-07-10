@@ -30,4 +30,8 @@ class Game
     @players.select { |player| player != the_player }.first
   end
 
+  def finished?
+    @current_turn.hp == 0 || @opponent.hp == 0
+  end
+
 end
