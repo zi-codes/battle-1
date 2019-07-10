@@ -1,10 +1,10 @@
 
 
+
   <p>Player 1 is called <%= @game.player_1.name %> </p>
   <p>Player 2 is called <%= @game.player_2.name %> </p>
   <p>Player 1 hit points: <%= @game.player_1.hp %> HP </p>
   <p>Player 2 hit points: <%= @game.player_2.hp %> HP </p>
 
-  <form action="/attack">
-    <input type="submit" value="Attack P2">
-  </form>
+
+  <h1>Wham! <%= @game.player_1.name %> attacked <%= @game.player_2.name %></h1>
